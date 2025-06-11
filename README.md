@@ -19,3 +19,10 @@ This action listens to the parsed model ShellyDeviceStatus and sends a warning i
 
 # System Config
 Action on every minute that defines the current treshold
+
+links
+https://marketplace.visualstudio.com/items?itemName=Coreflux.vscode-lot-notebooks
+
+https://coreflux.org/
+
+https://campus.coreflux.org/courses/take/lot-actions-basic/assignments/65763912-provide-a-public-github-link-with-a-simple-lot-notebook-that-includes
