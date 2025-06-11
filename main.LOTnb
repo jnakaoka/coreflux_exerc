@@ -1,0 +1,27 @@
+[
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "# ⚠️ Current Overload Alert\r\n"
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "# ⚡ Shelly Device Monitoring – High Current Alert\r\n\r\nThis LOT Notebook monitors current consumption of Shelly smart devices. If the current goes above `0.5A`, a high current alert is triggered and published to an alert topic.\r\n\r\n## 📥 Model: ShellyDeviceStatus\r\n\r\nThis model listens for JSON messages from your Shelly devices under the pattern `ShellyDevice/<LampName>/status`.\r\n"
+  },
+  {
+    "kind": 2,
+    "language": "lot",
+    "value": "DEFINE MODEL ShellyDeviceStatus WITH TOPIC \"ShellyDevice/+/status\""
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "💡 + is used as a wildcard to match any Shelly device name.\r\n\r\n🚨 Action: High Current Alert\r\nThis action listens to the parsed model ShellyDeviceStatus and sends a warning if the current exceeds 0.5A.\r\n\r\n"
+  },
+  {
+    "kind": 2,
+    "language": "lot",
+    "value": "DEFINE ACTION HighCurrentAlert\r\nON TOPIC \"ShellyDevice/+/status/current\" DO\r\n    IF PAYLOAD > 1 THEN\r\n        PUBLISH TOPIC \"alerts/ShellyDevice/+/high_current\" WITH (\" High current: \" +PAYLOAD)"
+  }
+]
