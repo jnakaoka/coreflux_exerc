@@ -22,6 +22,16 @@
   {
     "kind": 2,
     "language": "lot",
-    "value": "DEFINE ACTION HighCurrentAlert\r\nON TOPIC \"ShellyDevice/+/status/current\" DO\r\n    IF PAYLOAD > 1 THEN\r\n        PUBLISH TOPIC \"alerts/ShellyDevice/+/high_current\" WITH (\" High current: \" +PAYLOAD)"
+    "value": "DEFINE ACTION HighCurrentAlert\r\nON TOPIC \"ShellyDevice/+/status/current\" DO\r\n    IF PAYLOAD > (GET TOPIC \"alerts/ShellyDevice/CurrentTreshold\" AS DOUBLE) THEN\r\n        PUBLISH TOPIC \"alerts/ShellyDevice/+/high_current\" WITH (\" High current: \" +PAYLOAD)"
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "# System Config\r\nAction on every minute that defines the current treshold"
+  },
+  {
+    "kind": 2,
+    "language": "lot",
+    "value": "DEFINE ACTION config \r\nON EVERY 50 SECONDS\r\nDO\r\n    PUBLISH TOPIC \"alerts/ShellyDevice/CurrentTreshold\" WITH 1"
   }
 ]
